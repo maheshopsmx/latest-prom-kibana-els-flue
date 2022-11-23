@@ -1,0 +1,57 @@
+apiVersion: v2
+name: isdargo
+version: 4.1.0
+appVersion: 4.1.0
+description: "ISD with ArgoCD,ArgoRollouts"
+icon: https://raw.githubusercontent.com/OpsMx/enterprise-argo/main/img/opsmx.png
+maintainers:
+- email: srinivas@opsmx.io
+  name: ksrinimba
+- email: mahesh.kota@opsmx.io
+  name: maheshopsmx
+- email: saiteja.katabhatina@opsmx.io
+  name: saitejaopsmx
+keywords:
+  - OpsMx
+  - ISDARGO
+  - Autopilot
+dependencies:
+  - name: argo-cd
+    version: 4.10.5
+    condition: installArgoCD
+  - name: argo-rollouts
+    version: 2.18.0
+    condition: installArgoRollouts
+  - name: argo-workflows
+    version: 0.16.8
+    condition: installArgoWorkflows
+  - name: argo-events
+    version: 2.0.3
+    condition: installArgoEvents
+  - name: argocd-image-updater
+    version: 0.8.0
+    condition: installArgoImageupdater
+  - name: openldap
+    version: 1.2.3
+    condition: global.installOpenLdap
+  - name: elasticsearch
+    version: 7.17.3
+    condition: enableCentralLogging
+  - name: kibana
+    version: 7.17.3
+    condition: enableCentralLogging
+  - name: fluent-bit
+    version: 0.21.2
+    condition: enableCentralLogging
+  - name: prometheus
+    version: 16.0.0
+    condition: global.enableCentralMonitoring
+  - name: ingress-nginx
+    version: 4.1.4
+    condition: ingressnginx
+  - name: redis
+    version: 10.5.3
+    condition: installRedis
+  - name: minio
+    version: 8.0.9
+    condition: global.minio.enabled
